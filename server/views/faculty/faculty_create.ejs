@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include ("../header.ejs") %>
+    <title>Create faculty</title>
+    <style>
+        h1{
+            font-family: Cambria;
+            text-shadow: 2px 2px 4px #000000;
+            color: #285f55;
+        }
+        input, select {
+            background: none;
+            border: none;
+            outline: none;
+            /*padding: 10px 20px;*/
+            font-size: 16px;
+            border-radius: 9999px;
+            box-shadow: inset 1px 1px 4px rgb(40, 95, 85);
+            color: #fff;
+        }
+        button {
+            padding: 17px 40px;
+            border-radius: 30px;
+            border: 0;
+            background-color: #52796f;
+            box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 15px;
+            transition: all .5s ease;
+        }
+
+        button:hover {
+            letter-spacing: 3px;
+            background-color: hsl(261deg 80% 48%);
+            color: hsl(0, 0%, 100%);
+            box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+        }
+
+        button:active {
+            letter-spacing: 3px;
+            background-color: hsl(261deg 80% 48%);
+            color: hsl(0, 0%, 100%);
+            box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+            transform: translateY(10px);
+            transition: 100ms;
+        }
+    </style>
+</head>
+<body>
+<%- include ("../navigation.ejs") %>
+<div class="container" style=" background-color: white; opacity: 75%; border-radius: 10px; margin-top: 60px; padding-bottom: 10px">
+    <h1 class="text-center">Faculty Create</h1>
+    <form method="post" action="/faculty/create">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" id="name"  class="form-control" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="animal" class="form-label">Animal:</label>
+            <input type="text" id="animal" class="form-control" name="animal" required>
+        </div>
+        <div class="mb-3">
+            <label for="element" class="form-label">Element:</label>
+            <input type="text" id="element" class="form-control" name="element" required>
+        </div>
+        <div class="mb-3">
+            <label for="magicSchool" class="form-label">Magic school:</label>
+            <select id="magicSchool" name="magicSchool" class="form-select" required>
+                <option></option>
+                <%magicSchools.forEach(magicSchool =>{%>
+                <option value="<%=magicSchool.id%>"><%=magicSchool.name%></option>
+                <% }); %>
+            </select>
+        </div>
+        <button type="submit">Create</button>
+    </form>
+    <%- include ("../scripts.ejs") %>
+</div>
+</body>
+</html>

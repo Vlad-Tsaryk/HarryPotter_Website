@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include ("../header.ejs") %>
+    <title>Create Ghost</title>
+    <style>
+        h1{
+            font-family: Cambria;
+            text-shadow: 2px 2px 4px #000000;
+            color: #285f55;
+        }
+        input, select {
+            background: none;
+            border: none;
+            outline: none;
+            /*padding: 10px 20px;*/
+            font-size: 16px;
+            border-radius: 9999px;
+            box-shadow: inset 1px 1px 4px rgb(40, 95, 85);
+            color: #fff;
+        }
+        button {
+            padding: 17px 40px;
+            border-radius: 30px;
+            border: 0;
+            background-color: #52796f;
+            box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 15px;
+            transition: all .5s ease;
+        }
+
+        button:hover {
+            letter-spacing: 3px;
+            background-color: hsl(261deg 80% 48%);
+            color: hsl(0, 0%, 100%);
+            box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+        }
+
+        button:active {
+            letter-spacing: 3px;
+            background-color: hsl(261deg 80% 48%);
+            color: hsl(0, 0%, 100%);
+            box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+            transform: translateY(10px);
+            transition: 100ms;
+        }
+    </style>
+</head>
+<body>
+<%- include ("../navigation.ejs") %>
+<div class="container" style=" background-color: white; opacity: 75%; border-radius: 10px; margin-top: 60px; padding-bottom: 10px">
+    <h1 class="text-center">Ghost Create</h1>
+    <form method="post" action="/ghost/create">
+        <div class="mb-3">
+            <label for="fullName" class="form-label">Full name:</label>
+            <input type="text" id="fullName"  class="form-control" name="fullName" required>
+        </div>
+        <div class="mb-3">
+            <label for="born" class="form-label">Born:</label>
+            <input type="date" id="born" class="form-control" name="born" required>
+        </div>
+        <div class="mb-3">
+            <label for="died" class="form-label">Died:</label>
+            <input type="date" id="died" class="form-control" name="died" required>
+        </div>
+        <div class="mb-3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="1">
+                <label class="form-check-label" for="inlineRadio1">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="0">
+                <label class="form-check-label" for="inlineRadio2">Female</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="faculty" class="form-label">Faculty:</label>
+            <select id="faculty" name="faculty" class="form-select" required>
+                <option></option>
+                <%faculties.forEach(faculty =>{%>
+                <option value="<%=faculty.id%>"><%=faculty.name%></option>
+                <% }); %>
+            </select>
+        </div>
+        <button type="submit">Create</button>
+    </form>
+    <%- include ("../scripts.ejs") %>
+</div>
+</body>
+</html>
